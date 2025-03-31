@@ -1,121 +1,423 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>Data Scientist and ML Engineer</title>
-        <!-- Favicon-->
-        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
-        <!-- Custom Google font-->
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-        <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&amp;display=swap" rel="stylesheet" />
-        <!-- Bootstrap icons-->
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
-        <!-- Core theme CSS (includes Bootstrap)-->
-        <link href="css/styles.css" rel="stylesheet" />
-    </head>
-    <body class="d-flex flex-column h-100">
-        <main class="flex-shrink-0">
-            <!-- Navigation-->
-            <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
-                <div class="container px-5">
-                    <a class="navbar-brand" href="index.html"><span class="fw-bolder text-primary">Versatile|Experienced</span></a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
-                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                            <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
-                            <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <!-- Header-->
-<header class="py-5">
-    <div class="container px-5 pb-5">
-        <div class="row gx-5 align-items-center d-flex justify-content-between">
-            <div class="col-lg-6">
-                <!-- Header text content-->
-                <div class="text-start">
-                    <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
-                        <div class="text-uppercase">Insights &middot; Innovation &middot; Impact</div>
-                    </div>
-                    <div class="fs-3 fw-light text-muted">I use Data science, ML, and analytics to</div>
-                    <h1 class="display-3 fw-bolder mb-5">
-                        <span class="text-gradient d-inline">enhance your business</span>
-                    </h1>
-                    <div class="d-grid gap-3 d-sm-flex justify-content-start mb-3">
-                        <a class="btn btn-primary btn-lg px-5 py-3 me-sm-3 fs-6 fw-bolder" href="resume.html">Resume</a>
-                        <a class="btn btn-outline-dark btn-lg px-5 py-3 fs-6 fw-bolder" href="projects.html">Projects</a>
-                    </div>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="Portfolio of Odelola Solomon Oluwatobiloba - Data Scientist, ML Engineer, and AI Specialist with expertise in Natural Language Processing, Computer Vision, and Deep Learning" />
+    <meta name="author" content="Odelola Solomon Oluwatobiloba" />
+    <meta name="keywords" content="Machine Learning, Data Science, Artificial Intelligence, Python, Deep Learning, NLP, Computer Vision, ML Engineer" />
+    
+    <!-- Open Graph tags for social media sharing -->
+    <meta property="og:title" content="Odelola Solomon - Data Scientist & ML Engineer" />
+    <meta property="og:description" content="Experienced ML Engineer and Data Scientist specializing in developing innovative AI solutions." />
+    <meta property="og:image" content="assets/img/profile-img.jpg" />
+    <meta property="og:url" content="https://yourwebsite.com" />
+    
+    <title>Odelola Solomon | AI Engineer & ML Engineer</title>
+    
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    
+    <!-- Custom Google font-->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet" />
+    
+    <!-- Bootstrap icons-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css" rel="stylesheet" />
+    
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="css/styles.css" rel="stylesheet" />
+    
+    <!-- Additional custom styles -->
+    <style>
+        /* Skill badge styles */
+        .skill-badge {
+            background-color: #f8f9fa;
+            border-radius: 16px;
+            padding: 8px 16px;
+            margin: 5px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            display: inline-block;
+            border: 1px solid rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .skill-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Project card styles */
+        .project-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        /* Animated gradient text */
+        .animated-gradient {
+            background: linear-gradient(to right, #6a11cb 0%, #2575fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: gradient 3s linear infinite;
+        }
+        
+        @keyframes gradient {
+            0% {background-position: 0% 50%;}
+            50% {background-position: 100% 50%;}
+            100% {background-position: 0% 50%;}
+        }
+        
+        /* Enhance profile image */
+        .profile-img {
+            border-radius: 12px;
+            transition: transform 0.5s ease;
+        }
+        
+        .profile:hover .profile-img {
+            transform: scale(1.03);
+        }
+    </style>
+</head>
+
+<body class="d-flex flex-column h-100">
+    <main class="flex-shrink-0">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm fixed-top">
+            <div class="container px-5">
+                <a class="navbar-brand" href="index.html">
+                    <span class="fw-bolder text-primary"></span>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav ms-auto mb-2 mb-lg-0 small fw-bolder">
+                        <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="aboutme.html">AboutMe</a></li>
+                        <li class="nav-item"><a class="nav-link" href="resume.html">Resume</a></li>
+                        <li class="nav-item"><a class="nav-link" href="projects.html">Projects</a></li>
+                        
+                        <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    </ul>
                 </div>
             </div>
-            <div class="col-lg-6 d-flex justify-content-end">
-                <!-- Header profile picture-->
-                <div class="profile bg-gradient-primary-to-secondary">
-                    <!-- Profile Image -->
-                    <img class="profile-img img-fluid" src="DSC_3047.jpg" alt="Profile Picture" />
-                    <div class="dots-1">
-                        <!-- SVG Dots-->
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">
-                            <!-- SVG Path Code -->
-                        </svg>
+        </nav>
+        
+        <!-- Header-->
+        <header class="py-5 mt-5">
+            <div class="container px-5 pb-5">
+                <div class="row gx-5 align-items-center d-flex justify-content-between">
+                    <div class="col-lg-6">
+                        <!-- Header text content-->
+                        <div class="text-start">
+                            <div class="badge bg-gradient-primary-to-secondary text-white mb-4">
+                                <div class="text-uppercase">ML Engineer • AI Engineer • Data Scientist</div>
+                            </div>
+                            <div class="fs-3 fw-light text-muted">Transforming data into</div>
+                            <h1 class="display-3 fw-bolder mb-4">
+                                <span class="text-gradient d-inline">intelligent solutions</span>
+                            </h1>
+                            <p class="lead fw-normal text-muted mb-5">Specialized in developing custom AI/ML solutions that drive business value and innovation. 4+ years of hands-on experience creating production-ready AI/ML systems.</p>
+                            <div class="d-grid gap-2 d-sm-flex justify-content-start mb-3">
+                                <a class="btn btn-primary btn-md px-3 py-2 me-sm-2 fs-6 fw-bold" href="resume.html">Resume</a>
+                                <a class="btn btn-outline-dark btn-md px-3 py-2 fs-6 fw-bold" href="projects.html">Projects</a>
+                                <a class="btn btn-outline-primary btn-md px-3 py-2 fs-6 fw-bold" href="aboutme.html#publications-section">Publications</a>
+
+                                <a class="btn btn-outline-primary btn-md px-3 py-2 fs-6 fw-bold" href="contact.html">Contact Me</a>
+                                
+                            </div>
+                            
+                        </div>
                     </div>
-                    <div class="dots-2">
-                        <!-- SVG Dots-->
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">
-                            <!-- SVG Path Code -->
-                        </svg>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
- <!-- About Section-->
-            <section class="bg-light py-5">
-                <div class="container px-5">
-                    <div class="row gx-5 justify-content-center">
-                        <div class="col-xxl-8">
-                            <div class="text-center my-5">
-                                <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">About Me</span></h2>
-                                <p class="lead fw-light mb-4">Hi!, am Odelola Solomon Oluwatobiloba, I possses 4 years of experience with</p>
-                                <p class="text-muted">Strong proficiency in Python and intermediate JavaScript, mastery of algorithms use and development. Extensive knowledge of natural language processing, deep learning, Generative AI and computer
-                                    vision. Advanced skills in OpenCV, intermediate SQL, and Cloud computing skills with AWS, GCP, and Azure. Creative technical writing, presentation and team spirit.
-                                    </p>
-                                <div class="d-flex justify-content-center fs-2 gap-4">
-                                    <a class="text-gradient" href="https://wa.me/2348142695808"><i class="bi bi-whatsapp"></i></a>
-                                    <a class="text-gradient" href="https://www.linkedin.com/in/odelolasolomon/"><i class="bi bi-linkedin"></i></a>
-                                    <a class="text-gradient" href="https://github.com/Odelolasolomon"><i class="bi bi-github"></i></a>
-                                </div>
+                    <div class="col-lg-6 d-flex justify-content-end">
+                        <!-- Header profile picture-->
+                        <div class="profile bg-gradient-primary-to-secondary p-2 rounded">
+                            <!-- Profile Image -->
+                            <img class="profile-img img-fluid" src="DSC_3047.jpg" alt="Odelola Solomon - ML Engineer and Data Scientist" />
+                            <div class="dots-1">
+                                <!-- SVG Dots-->
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">
+                                    <!-- SVG Path Code -->
+                                </svg>
+                            </div>
+                            <div class="dots-2">
+                                <!-- SVG Dots-->
+                                <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 191.6 1215.4" style="enable-background: new 0 0 191.6 1215.4" xml:space="preserve">
+                                    <!-- SVG Path Code -->
+                                </svg>
                             </div>
                         </div>
                     </div>
                 </div>
-            </section>
-        </main>
-        <!-- Footer-->
-        <footer class="bg-white py-4 mt-auto">
-            <div class="container px-5">
-                <div class="row align-items-center justify-content-between flex-column flex-sm-row">
-                    <div class="col-auto"><div class="small m-0">Copyright &copy; My Website 2023</div></div>
-                    <div class="col-auto">
-                        <a class="small" href="#!">Privacy</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Terms</a>
-                        <span class="mx-1">&middot;</span>
-                        <a class="small" href="#!">Contact</a>
+            </div>
+        </header>
+        
+        <!-- Skills Section -->
+        <section class="py-5 border-bottom">
+            <div class="container px-5 my-5">
+                <div class="text-center mb-5">
+                    <h2 class="fw-bolder"><span class="text-gradient d-inline">Technical Expertise</span></h2>
+                    <p class="lead fw-normal text-muted mb-0">Specialized skills that drive impactful ML solutions</p>
+                </div>
+                <div class="row gx-5 text-center">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-code-slash"></i></div>
+                        <h2 class="h4 fw-bolder">Programming & Development</h2>
+                        <p class="mb-3">Expert in Python with advanced algorithms development. Intermediate JavaScript for full-stack ML applications. Version control with Git.</p>
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <span class="skill-badge">Python</span>
+                            <span class="skill-badge">R</span>
+                            <span class="skill-badge">SQL</span>
+                            <span class="skill-badge">Git</span>
+                            <span class="skill-badge">Docker</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-cpu"></i></div>
+                        <h2 class="h4 fw-bolder">Machine Learning & AI</h2>
+                        <p class="mb-3">Deep expertise in NLP, computer vision, and generative AI. Experience with state-of-the-art models and frameworks for production applications.</p>
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <span class="skill-badge">TensorFlow</span>
+                            <span class="skill-badge">PyTorch</span>
+                            <span class="skill-badge">OpenCV</span>
+                            <span class="skill-badge">Hugging Face</span>
+                            <span class="skill-badge">scikit-learn</span>
+                            <span class="skill-badge">Keras</span>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="feature bg-primary bg-gradient text-white rounded-3 mb-3"><i class="bi bi-cloud"></i></div>
+                        <h2 class="h4 fw-bolder">Cloud & Infrastructure</h2>
+                        <p class="mb-3">Cloud computing expertise spanning AWS, GCP, and Azure. Experience with ML model deployment and scaling in production environments.</p>
+                        <div class="d-flex flex-wrap justify-content-center">
+                            <span class="skill-badge">AWS</span>
+                            <span class="skill-badge">GCP</span>
+                            <span class="skill-badge">Azure</span>
+                            <span class="skill-badge">MLOps</span>
+                            <span class="skill-badge">LLMOps</span>
+                            <span class="skill-badge">Kubernetes</span>
+                        </div>
                     </div>
                 </div>
             </div>
-        </footer>
-        <!-- Bootstrap core JS-->
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
-        <!-- Core theme JS-->
-        <script src="js/scripts.js"></script>
-    </body>
+        </section>
+        
+        <!-- Featured Projects Section -->
+<section class="py-5">
+    <div class="container px-5 my-5">
+        <div class="text-center mb-5">
+            <h2 class="fw-bolder"><span class="text-gradient d-inline">Featured Projects</span></h2>
+            <p class="lead fw-normal text-muted mb-0">Recent work showcasing technical expertise</p>
+        </div>
+        <div class="row gx-5">
+            <!-- Project 1 -->
+            <div class="col-lg-4 mb-5">
+                <div class="card project-card h-100">
+                    <img class="card-img-top" src="/api/placeholder/400/225" alt="ML Project" />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">NLP / Deep Learning</div>
+                        <h5 class="card-title mb-3">Mental Health Counselling Chatbot</h5>
+                        <p class="card-text mb-0">Developed AI mental health chatbot delivering 24/7 support with 85% reduced wait times and 92% user satisfaction, effectively triaging urgent cases while providing evidence-based coping strategies.</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <a href="projects.html" class="btn btn-outline-primary btn-sm">View Details</a>
+                            <a href="https://github.com/Odelolasolomon/Mental-Health-Counselling-Chatbot.git" class="btn btn-sm"><i class="bi bi-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 2 -->
+            <div class="col-lg-4 mb-5">
+                <div class="card project-card h-100">
+                    <img class="card-img-top" src="/api/placeholder/400/225" alt="Computer Vision Project" />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Computer Vision</div>
+                        <h5 class="card-title mb-3">AI X-ray Denoising</h5>
+                        <p class="card-text mb-0">Collaborated with machine learning collective in Nigeria(MLC), to implementet AI denoising for pediatric X-rays, achieving 40% noise reduction while maintaining 95% diagnostic feature clarity. This enables 30% lower radiation doses without compromising image quality, significantly improving safety for young patients.</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <a href="projects.html" class="btn btn-outline-primary btn-sm">View Details</a>
+                            <a href="https://github.com/Odelolasolomon/AI-Enhanced-X-ray-Image-Denoising-for-Low-Dose-Pediatric-Imaging-Research.git" class="btn btn-sm"><i class="bi bi-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Project 3 -->
+            <div class="col-lg-4 mb-5">
+                <div class="card project-card h-100">
+                    <img class="card-img-top" src="/api/placeholder/400/225" alt="Generative AI Project" />
+                    <div class="card-body p-4">
+                        <div class="badge bg-primary bg-gradient rounded-pill mb-2">Generative AI</div>
+                        <h5 class="card-title mb-3">AI-Powered Disease Diagnosis & Health Assistant for Rural Clinics</h5>
+                        <p class="card-text mb-0"> collaboratively developed an AI health assistant at Sail Innovation lab, for rural clinics, achieving 93% diagnostic accuracy, reducing diagnosis time by 75%, and expanding healthcare access for 15,000+ underserved patients.</p>
+                    </div>
+                    <div class="card-footer p-4 pt-0 bg-transparent border-top-0">
+                        <div class="d-flex align-items-end justify-content-between">
+                            <a href="projects.html" class="btn btn-outline-primary btn-sm">View Details</a>
+                            <a href="https://github.com/Odelolasolomon/AI-Powered-Disease-Diagnosis-Health-Assistant-for-Rural-Clinics.git" class="btn btn-sm"><i class="bi bi-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <a class="btn btn-primary btn-lg px-5 py-3 fs-6 fw-bolder" href="projects.html">View More Projects</a>
+        </div>
+    </div>
+</section>
+        
+        <!-- About Section-->
+        <section class="bg-light py-5">
+            <div class="container px-5">
+                <div class="row gx-5 justify-content-center">
+                    <div class="col-xxl-8">
+                        <div class="text-center my-5">
+                            <h2 class="display-5 fw-bolder"><span class="text-gradient d-inline">About Me</span></h2>
+                            <p class="lead fw-light mb-4">Hello! I'm Odelola Solomon Oluwatobiloba, an AI/ML Engineer with 4+ years of experience.</p>
+                            <p class="text-muted mb-4">
+                                I specialize in developing innovative machine learning solutions that solve complex business problems. My expertise includes natural language processing, computer vision, and deep learning, with a focus on creating production-ready systems that deliver real-world impact.
+                            </p>
+                            <p class="text-muted mb-4">
+                                I have strong proficiency in Python with advanced algorithm development skills, and intermediate JavaScript knowledge for full-stack ML applications. My technical toolkit includes extensive experience with OpenCV, SQL, and cloud platforms (AWS, GCP, Azure). Beyond technical skills, I'm known for clear technical writing, compelling presentations, and effective team collaboration.
+                            </p>
+                            <p class="text-muted mb-5">
+                                Currently seeking opportunities to apply my expertise in challenging AI/ML roles and advanced academic programs where I can continue to develop innovative solutions and contribute to cutting-edge research.
+                            </p>
+                            
+                            <!-- Education Section -->
+                            <h4 class="fw-bolder mb-4 text-center"><span class="text-gradient d-inline">Education</span></h4>
+<div class="d-flex flex-column align-items-center text-center mb-4">
+    <div class="w-100">
+        <h5 class="mb-1">Statistics Major</h5>
+        <div class="subheading mb-2">University of Nigeria</div>
+        <p class="mb-1">Graduated with Honors, GPA: 4.03/5.0</p>
+        <p class="mb-3">Relevant coursework: R programmimg, C++, Parametric and non parametric tests, Calculus, Numerical methods</p>
+    </div>
+    <div>
+        <span class="text-primary d-block">March 2020 - March 2024</span>
+    </div>
+</div>
+
+
+                            
+                            <!-- Certifications -->
+                            <h4 class="fw-bolder mb-4 mt-5"><span class="text-gradient d-inline">Certifications</span></h4>
+                            <div class="row gx-5 justify-content-center">
+                                <div class="col-md-4 mb-3">
+                                    <div class="card h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="bi bi-patch-check text-primary fs-1 mb-3"></i>
+                                            <h5 class="card-title">AWS Machine Learning Specialty</h5>
+                                            <p class="card-text small text-muted">Amazon Web Services</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="bi bi-patch-check text-primary fs-1 mb-3"></i>
+                                            <h5 class="card-title">NLP Specialization</h5>
+                                            <p class="card-text small text-muted">DeepLearning.AI</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <div class="card h-100 shadow-sm">
+                                        <div class="card-body text-center">
+                                            <i class="bi bi-patch-check text-primary fs-1 mb-3"></i>
+                                            <h5 class="card-title">Deep Learning Specialization</h5>
+                                            <p class="card-text small text-muted">DeepLearning.AI</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="d-flex justify-content-center fs-2 gap-4 mt-5">
+                                <a class="text-gradient" href="https://wa.me/2348142695808" title="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                                <a class="text-gradient" href="https://www.linkedin.com/in/odelolasolomon/" title="LinkedIn"><i class="bi bi-linkedin"></i></a>
+                                <a class="text-gradient" href="https://github.com/Odelolasolomon" title="GitHub"><i class="bi bi-github"></i></a>
+                                <a class="text-gradient" href="mailto:odelolasolomon5@gmail.com" title="Email"><i class="bi bi-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Call to Action-->
+        <section class="py-5 bg-gradient-primary-to-secondary text-white">
+            <div class="container px-5 my-5">
+                <div class="text-center">
+                    <h2 class="display-4 fw-bolder mb-4">Ready to transform your data challenges into opportunities?</h2>
+                    <p class="lead fw-normal text-white-50 mb-4">Whether you're looking for an experienced ML Engineer to join your team or considering me for an advanced degree program, I'd love to connect.</p>
+                    <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+                        <a class="btn btn-outline-light btn-lg px-5 py-3 fs-6 fw-bolder" href="contact.html">Contact Me</a>
+                        <a class="btn btn-light btn-lg px-5 py-3 fs-6 fw-bolder" href="resume.html">View Resume</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <!-- Footer-->
+    <footer class="bg-white py-4 mt-auto">
+        <div class="container px-5">
+            <div class="row align-items-center justify-content-between flex-column flex-sm-row">
+                <div class="col-auto"><div class="small m-0">Copyright &copy; Odelola Solomon 2025 | All Rights Reserved</div></div>
+                <div class="col-auto">
+                    <a class="small" href="#!">Privacy Policy</a>
+                    <span class="mx-1">&middot;</span>
+                    <a class="small" href="#!">Terms of Service</a>
+                    <span class="mx-1">&middot;</span>
+                    <a class="small" href="contact.html">Contact</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Core theme JS-->
+    <script src="js/scripts.js"></script>
+    
+    <!-- Animation library (optional) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    
+    <!-- Initialize animations -->
+    <script>
+        // Initialize animation on scroll
+        if (typeof AOS !== 'undefined') {
+            AOS.init({
+                duration: 1000,
+                once: true
+            });
+        }
+        
+        // Add active class to the current nav item
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentLocation = location.pathname;
+            const navLinks = document.querySelectorAll('.navbar-nav .nav-link');
+            navLinks.forEach(link => {
+                if(link.getAttribute('href') === currentLocation || 
+                   (currentLocation === '/' && link.getAttribute('href') === 'index.html')) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
 </html>

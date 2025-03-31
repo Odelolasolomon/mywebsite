@@ -32,5 +32,19 @@ document.getElementById('contactForm').addEventListener('submit', function(event
     document.getElementById('submitErrorMessage').classList.add('d-none');
 });
 
+ document.addEventListener("DOMContentLoaded", function() {
+        const heroVideo = document.getElementById('heroVideo');
+        
+        // Make sure video is loaded before starting
+        heroVideo.addEventListener('loadeddata', function() {
+            console.log("Video loaded successfully");
+        });
+        
+        // Handle any errors
+        heroVideo.addEventListener('error', function(e) {
+            console.error("Error loading video:", e);
+        });
+    });
+
 
 
