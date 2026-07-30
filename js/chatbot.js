@@ -29,6 +29,7 @@
     let isListening = false;
     let finalTranscript = "";
     let restartSpeech = false;
+    let speechRestartTimer;
     const chatHistory = [];
 
     function createWidget() {
@@ -113,6 +114,8 @@
             localStorage.setItem("solomon-chat-voice", String(voiceEnabled));
             refreshLanguage();
             setStatus(voiceEnabled ? languages[lang].ttsOn : languages[lang].ttsOff, status);
+            if (voiceEnabled) speak(languages[lang].ttsOn, true);
+            else if ("speechSynthesis" in window) window.speechSynthesis.cancel();
         });
 
         micButton.addEventListener("click", () => toggleSpeech(input, status, micButton));
@@ -195,13 +198,60 @@
             .replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener">$1</a>');
     }
 
-    function speak(text) {
-        if (!voiceEnabled || !("speechSynthesis" in window)) return;
+    function speak(text, force = false) {
+        if ((!voiceEnabled && !force) || !("speechSynthesis" in window)) return;
+        const cleanText = text
+            .replace(/https?:\/\/[^\s]+/g, "")
+            .replace(/<[^>]+>/g, "")
+            .replace(/\s+/g, " ")
+            .trim();
+        if (!cleanText) return;
+
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text.replace(/https?:\/\/[^\s]+/g, ""));
-        utterance.lang = languages[lang].locale;
-        utterance.rate = 0.95;
-        window.speechSynthesis.speak(utterance);
+        window.speechSynthesis.resume();
+
+        const chunks = splitSpeech(cleanText);
+        const voices = window.speechSynthesis.getVoices ? window.speechSynthesis.getVoices() : [];
+        const voice = voices.find((item) => item.lang && item.lang.toLowerCase().startsWith(languages[lang].locale.slice(0, 2).toLowerCase())) || voices[0];
+        let index = 0;
+
+        const speakNext = () => {
+            if (index >= chunks.length) return;
+            const utterance = new SpeechSynthesisUtterance(chunks[index]);
+            utterance.lang = languages[lang].locale;
+            utterance.rate = 0.94;
+            utterance.pitch = 1;
+            if (voice) utterance.voice = voice;
+            utterance.onend = () => {
+                index += 1;
+                speakNext();
+            };
+            utterance.onerror = () => {
+                index += 1;
+                speakNext();
+            };
+            window.speechSynthesis.speak(utterance);
+        };
+
+        speakNext();
+    }
+
+    function splitSpeech(text) {
+        const sentences = text.match(/[^.!?]+[.!?]*/g) || [text];
+        const chunks = [];
+        let current = "";
+        for (const sentence of sentences) {
+            const clean = sentence.trim();
+            if (!clean) continue;
+            if ((current + " " + clean).trim().length > 180 && current) {
+                chunks.push(current);
+                current = clean;
+            } else {
+                current = (current + " " + clean).trim();
+            }
+        }
+        if (current) chunks.push(current);
+        return chunks;
     }
 
     function toggleSpeech(input, status, micButton) {
@@ -212,12 +262,7 @@
         }
 
         if (isListening && recognition) {
-            restartSpeech = false;
-            isListening = false;
-            recognition.stop();
-            micButton.classList.remove("is-active");
-            status.textContent = "";
-            input.focus();
+            stopRecognition(input, status, micButton);
             return;
         }
 
@@ -227,6 +272,21 @@
         micButton.classList.add("is-active");
         status.textContent = `${languages[lang].listening} ${languages[lang].stopHint}`;
         startRecognition(input, status, micButton);
+    }
+
+    function stopRecognition(input, status, micButton) {
+        restartSpeech = false;
+        isListening = false;
+        window.clearTimeout(speechRestartTimer);
+        if (recognition) recognition.onend = null;
+        try {
+            if (recognition) recognition.stop();
+        } catch (error) {
+            // Browser may already have stopped recognition.
+        }
+        micButton.classList.remove("is-active");
+        status.textContent = "";
+        input.focus();
     }
 
     function startRecognition(input, status, micButton) {
@@ -253,9 +313,10 @@
 
         recognition.onend = () => {
             if (restartSpeech && isListening) {
-                window.setTimeout(() => {
+                status.textContent = `${languages[lang].listening} ${languages[lang].stopHint}`;
+                speechRestartTimer = window.setTimeout(() => {
                     if (restartSpeech && isListening) startRecognition(input, status, micButton);
-                }, 250);
+                }, 450);
                 return;
             }
             isListening = false;
@@ -265,14 +326,24 @@
         };
 
         recognition.onerror = (event) => {
-            if (event.error === "no-speech" && restartSpeech && isListening) return;
+            const recoverableErrors = ["no-speech", "network", "aborted"];
+            if (recoverableErrors.includes(event.error) && restartSpeech && isListening) {
+                status.textContent = `${languages[lang].listening} ${languages[lang].stopHint}`;
+                return;
+            }
             isListening = false;
             restartSpeech = false;
             micButton.classList.remove("is-active");
-            status.textContent = languages[lang].noSpeech;
+            status.textContent = event.error === "not-allowed" ? "Microphone permission is blocked." : languages[lang].noSpeech;
         };
 
-        recognition.start();
+        try {
+            recognition.start();
+        } catch (error) {
+            if (restartSpeech && isListening) {
+                speechRestartTimer = window.setTimeout(() => startRecognition(input, status, micButton), 600);
+            }
+        }
     }
 
     if (document.readyState === "loading") {
