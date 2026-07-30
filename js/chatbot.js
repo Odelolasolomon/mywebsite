@@ -1,10 +1,10 @@
-﻿(() => {
+(() => {
     const languages = {
-        en: { label: "English", locale: "en-US", welcome: "Hi, I am Solomon's AI portfolio agent. Ask me anything about his AI engineering experience, projects, research, skills, hiring fit, CV, or contact details.", placeholder: "Ask about Solomon...", listening: "Listening...", noSpeech: "Speech recognition is not available in this browser.", ttsOn: "Voice replies on", ttsOff: "Voice replies off", thinking: "Thinking with Groq...", error: "I could not reach the AI server. Make sure the Groq server is running and your API key is set." },
-        fr: { label: "Français", locale: "fr-FR", welcome: "Bonjour, je suis l'agent IA du portfolio de Solomon. Posez-moi des questions sur son experience, ses projets, ses recherches, ses competences, son CV ou son profil de recrutement.", placeholder: "Posez une question...", listening: "J'ecoute...", noSpeech: "La reconnaissance vocale n'est pas disponible dans ce navigateur.", ttsOn: "Reponses vocales activees", ttsOff: "Reponses vocales desactivees", thinking: "Reflexion avec Groq...", error: "Impossible de joindre le serveur IA. Verifiez que le serveur Groq fonctionne et que la cle API est configuree." },
-        es: { label: "Español", locale: "es-ES", welcome: "Hola, soy el agente de IA del portafolio de Solomon. Preguntame sobre su experiencia, proyectos, investigacion, habilidades, CV o encaje para un puesto.", placeholder: "Pregunta sobre Solomon...", listening: "Escuchando...", noSpeech: "El reconocimiento de voz no esta disponible en este navegador.", ttsOn: "Respuestas de voz activadas", ttsOff: "Respuestas de voz desactivadas", thinking: "Pensando con Groq...", error: "No pude conectar con el servidor de IA. Asegurate de que el servidor Groq este activo y la API key configurada." },
-        yo: { label: "Yoruba", locale: "en-NG", welcome: "Bawo, emi ni AI agent portfolio Solomon. Beere ohunkohun nipa iriri AI engineering re, awon ise akanse, iwadi, ogbon, CV, tabi boya o ba ise yin mu.", placeholder: "Beere nipa Solomon...", listening: "Mo ngbo...", noSpeech: "Speech recognition ko si lori browser yi.", ttsOn: "Ohun ti tan", ttsOff: "Ohun ti wa ni pipa", thinking: "Mo n ronu pelu Groq...", error: "Mi o le kan si AI server. Rii daju pe Groq server n sise ati API key wa ninu .env." },
-        ha: { label: "Hausa", locale: "en-NG", welcome: "Sannu, ni AI agent na portfolio din Solomon. Tambaye ni game da AI engineering dinsa, ayyuka, bincike, fasaha, CV, ko dacewarsa da aiki.", placeholder: "Tambayi game da Solomon...", listening: "Ina sauraro...", noSpeech: "Babu speech recognition a wannan browser.", ttsOn: "Amsar murya ta kunna", ttsOff: "Amsar murya ta kashe", thinking: "Ina tunani da Groq...", error: "Ba zan iya kaiwa AI server ba. Tabbatar Groq server yana aiki kuma API key tana cikin .env." }
+        en: { label: "English", locale: "en-US", welcome: "Hi, I am Solomon's AI portfolio agent. Ask me anything about his AI engineering experience, projects, research, skills, hiring fit, CV, or contact details.", placeholder: "Ask about Solomon...", listening: "Listening...", noSpeech: "Speech recognition is not available in this browser.", ttsOn: "Voice replies on", ttsOff: "Voice replies off", thinking: "Reviewing Solomon's portfolio...", error: "I could not reach the AI assistant right now. Please try again shortly.", stopHint: "Tap the mic again when you are done." },
+        fr: { label: "Français", locale: "fr-FR", welcome: "Bonjour, je suis l'agent IA du portfolio de Solomon. Posez-moi des questions sur son experience, ses projets, ses recherches, ses competences, son CV ou son profil de recrutement.", placeholder: "Posez une question...", listening: "J'ecoute...", noSpeech: "La reconnaissance vocale n'est pas disponible dans ce navigateur.", ttsOn: "Reponses vocales activees", ttsOff: "Reponses vocales desactivees", thinking: "Analyse du profil de Solomon...", error: "Impossible de joindre l'assistant IA pour le moment. Veuillez reessayer bientot.", stopHint: "Appuyez encore sur le micro quand vous avez termine." },
+        es: { label: "Español", locale: "es-ES", welcome: "Hola, soy el agente de IA del portafolio de Solomon. Preguntame sobre su experiencia, proyectos, investigacion, habilidades, CV o encaje para un puesto.", placeholder: "Pregunta sobre Solomon...", listening: "Escuchando...", noSpeech: "El reconocimiento de voz no esta disponible en este navegador.", ttsOn: "Respuestas de voz activadas", ttsOff: "Respuestas de voz desactivadas", thinking: "Revisando el perfil de Solomon...", error: "No pude conectar con el asistente de IA ahora. Intentalo de nuevo en breve.", stopHint: "Toca el micro otra vez cuando termines." },
+        yo: { label: "Yoruba", locale: "en-NG", welcome: "Bawo, emi ni AI agent portfolio Solomon. Beere ohunkohun nipa iriri AI engineering re, awon ise akanse, iwadi, ogbon, CV, tabi boya o ba ise yin mu.", placeholder: "Beere nipa Solomon...", listening: "Mo ngbo...", noSpeech: "Speech recognition ko si lori browser yi.", ttsOn: "Ohun ti tan", ttsOff: "Ohun ti wa ni pipa", thinking: "Mo n wo portfolio Solomon...", error: "Mi o le kan si AI assistant bayi. Jowo gbiyanju leekansi laipe.", stopHint: "Te mic naa leekansi ti o ba ti pari." },
+        ha: { label: "Hausa", locale: "en-NG", welcome: "Sannu, ni AI agent na portfolio din Solomon. Tambaye ni game da AI engineering dinsa, ayyuka, bincike, fasaha, CV, ko dacewarsa da aiki.", placeholder: "Tambayi game da Solomon...", listening: "Ina sauraro...", noSpeech: "Babu speech recognition a wannan browser.", ttsOn: "Amsar murya ta kunna", ttsOff: "Amsar murya ta kashe", thinking: "Ina duba portfolio din Solomon...", error: "Ba zan iya kaiwa AI assistant yanzu ba. A sake gwadawa anjima kadan.", stopHint: "Sake danna mic idan ka gama." }
     };
 
     const quickPrompts = {
@@ -16,16 +16,19 @@
     };
 
     const fallbackReplies = {
-        en: "I can still help briefly: Solomon is a Senior AI Engineer strong in LLMs, AI agents, RAG, fraud detection, healthcare AI, computer vision, FastAPI, MLOps, Docker, and Kubernetes. For full intelligent answers, run the Groq server with your API key.",
-        fr: "Je peux aider brievement: Solomon est Senior AI Engineer, fort en LLM, agents IA, RAG, fraude, IA medicale, vision par ordinateur, FastAPI, MLOps, Docker et Kubernetes. Pour des reponses intelligentes completes, lancez le serveur Groq avec votre cle API.",
-        es: "Puedo ayudar brevemente: Solomon es Senior AI Engineer con fortaleza en LLMs, agentes IA, RAG, fraude, IA medica, vision por computador, FastAPI, MLOps, Docker y Kubernetes. Para respuestas inteligentes completas, ejecuta el servidor Groq con tu API key.",
-        yo: "Mo le dahun ni kukuru: Solomon je Senior AI Engineer to lagbara ninu LLMs, AI agents, RAG, fraud detection, healthcare AI, computer vision, FastAPI, MLOps, Docker ati Kubernetes. Fun idahun to jinle, run Groq server pelu API key re.",
-        ha: "Zan iya amsa a takaice: Solomon Senior AI Engineer ne mai karfi a LLMs, AI agents, RAG, fraud detection, healthcare AI, computer vision, FastAPI, MLOps, Docker da Kubernetes. Don cikakkiyar amsa, kunna Groq server da API key dinka."
+        en: "I can still help briefly: Solomon is a Senior AI Engineer strong in LLMs, AI agents, RAG, fraud detection, healthcare AI, computer vision, FastAPI, MLOps, Docker, and Kubernetes. For full intelligent answers, make sure the AI assistant is connected.",
+        fr: "Je peux aider brievement: Solomon est Senior AI Engineer, fort en LLM, agents IA, RAG, fraude, IA medicale, vision par ordinateur, FastAPI, MLOps, Docker et Kubernetes. Pour des reponses intelligentes completes, verifiez que l'assistant IA est connecte.",
+        es: "Puedo ayudar brevemente: Solomon es Senior AI Engineer con fortaleza en LLMs, agentes IA, RAG, fraude, IA medica, vision por computador, FastAPI, MLOps, Docker y Kubernetes. Para respuestas inteligentes completas, verifica que el asistente de IA este conectado.",
+        yo: "Mo le dahun ni kukuru: Solomon je Senior AI Engineer to lagbara ninu LLMs, AI agents, RAG, fraud detection, healthcare AI, computer vision, FastAPI, MLOps, Docker ati Kubernetes. Fun idahun to jinle, rii daju pe AI assistant ti sop?.",
+        ha: "Zan iya amsa a takaice: Solomon Senior AI Engineer ne mai karfi a LLMs, AI agents, RAG, fraud detection, healthcare AI, computer vision, FastAPI, MLOps, Docker da Kubernetes. Don cikakkiyar amsa, tabbatar AI assistant yana hade."
     };
 
     let lang = localStorage.getItem("solomon-chat-lang") || "en";
     let voiceEnabled = localStorage.getItem("solomon-chat-voice") === "true";
     let recognition;
+    let isListening = false;
+    let finalTranscript = "";
+    let restartSpeech = false;
     const chatHistory = [];
 
     function createWidget() {
@@ -34,7 +37,7 @@
         panel.setAttribute("aria-label", "AI portfolio chatbot");
         panel.innerHTML = `
             <header class="ai-chat-header">
-                <div><h2>Solomon AI Agent</h2><p>Groq-powered portfolio assistant</p></div>
+                <div><h2>Solomon AI Agent</h2><p>Intelligent portfolio assistant</p></div>
                 <button class="ai-chat-close" type="button" aria-label="Close chat"><i class="bi bi-x-lg"></i></button>
             </header>
             <div class="ai-chat-tools">
@@ -112,7 +115,7 @@
             setStatus(voiceEnabled ? languages[lang].ttsOn : languages[lang].ttsOff, status);
         });
 
-        micButton.addEventListener("click", () => startSpeech(input, status, micButton));
+        micButton.addEventListener("click", () => toggleSpeech(input, status, micButton));
 
         form.addEventListener("submit", (event) => {
             event.preventDefault();
@@ -201,30 +204,74 @@
         window.speechSynthesis.speak(utterance);
     }
 
-    function startSpeech(input, status, micButton) {
+    function toggleSpeech(input, status, micButton) {
         const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
         if (!SpeechRecognition) {
             status.textContent = languages[lang].noSpeech;
             return;
         }
-        recognition = recognition || new SpeechRecognition();
-        recognition.lang = languages[lang].locale;
-        recognition.interimResults = false;
-        recognition.maxAlternatives = 1;
+
+        if (isListening && recognition) {
+            restartSpeech = false;
+            isListening = false;
+            recognition.stop();
+            micButton.classList.remove("is-active");
+            status.textContent = "";
+            input.focus();
+            return;
+        }
+
+        finalTranscript = input.value.trim();
+        restartSpeech = true;
+        isListening = true;
         micButton.classList.add("is-active");
-        status.textContent = languages[lang].listening;
+        status.textContent = `${languages[lang].listening} ${languages[lang].stopHint}`;
+        startRecognition(input, status, micButton);
+    }
+
+    function startRecognition(input, status, micButton) {
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+        recognition = new SpeechRecognition();
+        recognition.lang = languages[lang].locale;
+        recognition.interimResults = true;
+        recognition.continuous = true;
+        recognition.maxAlternatives = 1;
+
         recognition.onresult = (event) => {
-            input.value = event.results[0][0].transcript;
+            let interimTranscript = "";
+            for (let index = event.resultIndex; index < event.results.length; index += 1) {
+                const transcript = event.results[index][0].transcript.trim();
+                if (event.results[index].isFinal) {
+                    finalTranscript = `${finalTranscript} ${transcript}`.trim();
+                } else {
+                    interimTranscript = `${interimTranscript} ${transcript}`.trim();
+                }
+            }
+            input.value = `${finalTranscript} ${interimTranscript}`.trim();
             input.focus();
         };
+
         recognition.onend = () => {
+            if (restartSpeech && isListening) {
+                window.setTimeout(() => {
+                    if (restartSpeech && isListening) startRecognition(input, status, micButton);
+                }, 250);
+                return;
+            }
+            isListening = false;
+            restartSpeech = false;
             micButton.classList.remove("is-active");
             status.textContent = "";
         };
-        recognition.onerror = () => {
+
+        recognition.onerror = (event) => {
+            if (event.error === "no-speech" && restartSpeech && isListening) return;
+            isListening = false;
+            restartSpeech = false;
             micButton.classList.remove("is-active");
             status.textContent = languages[lang].noSpeech;
         };
+
         recognition.start();
     }
 
