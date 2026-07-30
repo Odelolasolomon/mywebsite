@@ -1,0 +1,14 @@
+﻿{
+  "name": "solomon-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Odelola Solomon portfolio with Groq-powered AI chatbot.",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "check": "node --check server.js && node --check js/chatbot.js && node --check js/scripts.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
